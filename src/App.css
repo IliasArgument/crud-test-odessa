@@ -1,38 +1,68 @@
-.App {
+.container {
   text-align: center;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.td {
+  text-align: center;
+  border: 1px solid black;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.flex-large {
+  width: 100%;
+  margin: 0 auto;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 530px;
+  height: 300px;
+  margin: 0 auto;
+  border: 1px solid black;
+  background: rgb(107, 105, 105);
+  border-radius: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.input {
+  outline: none;
+  height: 30px;
+  margin: 5px;
+  border-radius: 15px;
+  padding: 5px 0 0 10px;
+  border: none;
+}
+.validate {
+  border: 1px solid red;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*table*/
+.table {
+  margin: 0 auto;
+  height: 400px;
+  width: 80%;
+}
+
+/*pagination*/
+.pagintion-container {
+  width: 100%;
+  border-bottom: 1px solid silver;
+  position: absolute;
+  bottom: 0;
+}
+.pagination-btn {
+  padding: 20px;
+  margin: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+.pagination-btn:hover {
+  padding: 19px;
+
+  border: 1px solid silver;
+  background: lightblue;
+}
+
+.Toastify__toast {
+  min-height: 46px;
 }
