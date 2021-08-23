@@ -47,12 +47,11 @@
   width: 100%;
   border-bottom: 1px solid silver;
   position: absolute;
-  bottom: 0;
 }
 .pagination-btn {
   padding: 20px;
   margin: 5px 10px;
-  border-radius: 50%;
+  border-radius: 10%;
   cursor: pointer;
   border: none;
 }
