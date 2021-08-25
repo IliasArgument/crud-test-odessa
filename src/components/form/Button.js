@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 
 export default function ContainedButtons(props) {
     const classes = useStyles();
-
+    console.log(props.option, 'option')
     return (
         <div className={classes.root}>
             <Button variant='contained' color={props.color} onClick={props.onClick} type={props.type} className={classes.btn}>

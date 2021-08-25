@@ -13,7 +13,3 @@ export const showSuccessToast = (text) => {
 export const showErrorToast = (text) => {
     showToast('error', text);
 };
-
-export const showWarningToast = (text) => {
-    showToast('warning', text);
-};

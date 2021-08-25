@@ -61,7 +61,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getUsersData())
     setUsers(data)
-  }, [])
+  }, [setUsers])
 
   const indexOfLastPost = page * per_page;
   const indexOfFirstPost = indexOfLastPost - per_page;

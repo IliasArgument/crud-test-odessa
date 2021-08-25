@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../form/Button';
+import Button from './Button';
 import * as Toaster from '../toaster/Toaster';
 
 
@@ -14,41 +14,44 @@ const UserForm = props => {
     }, [props])
 
     const handleInputChange = event => {
-        if (editing) {
-            const { name, value } = event.target
-            setUser({ ...user, [name]: value })
-        } else {
-            const { name, value } = event.currentTarget
-            setUser({ ...user, [name]: value })
+        const { name, value } = event.target
+        setUser({ ...user, [name]: value })
+    }
+
+    const validate = (user) => {
+        let validated = true;
+        if (!user.name) {
+            Toaster.showErrorToast('Name entered incorrectly');
+            validated = false;
         }
+        if (!user.surname) {
+            Toaster.showErrorToast('Surname entered incorrectly');
+            validated = false;
+        }
+        if (!user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+            Toaster.showErrorToast('Email entered incorrectly');
+            validated = false;
+        }
+        if (!user.phone.match(/^\d[\d\(\)\ -]{4,14}\d$/) || !user.phone) {
+            Toaster.showErrorToast('Phone entered incorrectly');
+            validated = false;
+        }
+        if (!user.dataOfBirth) {
+            Toaster.showErrorToast('birthday entered incorrectly');
+            validated = false;
+        }
+        return validated;
     }
 
     const handleSubmit = (e, user) => {
-
         e.preventDefault()
-        if (!user.name) {
-            Toaster.showErrorToast('Name entered incorrectly');
-        }
-        else if (!user.surname) {
-            Toaster.showErrorToast('Surname entered incorrectly');
-        }
-        else if (!user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-            Toaster.showErrorToast('Email entered incorrectly');
-        }
-        else if (!user.phone.match(/^\d[\d\(\)\ -]{4,14}\d$/) || !user.phone) {
-            Toaster.showErrorToast('Phone entered incorrectly');
-        }
-        else if (!user.dataOfBirth) {
-            Toaster.showErrorToast('birthday entered incorrectly');
-        }
-        else {
-            if (editing) {
-                props.updateUser(user.id, user)
-                Toaster.showSuccessToast('data change successfully');
-            } else {
-                Toaster.showSuccessToast('data added successfully');
-                props.addUser(user)
-            }
+        if (!validate(user)) return;
+        if (editing) {
+            props.updateUser(user.id, user)
+            Toaster.showSuccessToast('data change successfully');
+        } else {
+            Toaster.showSuccessToast('data added successfully');
+            props.addUser(user)
         }
     }
 

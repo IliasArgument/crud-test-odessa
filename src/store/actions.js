@@ -18,9 +18,11 @@ export const getUsersData = () => async (dispatch) => {
         if (response?.data) {
             dispatch(usersData(response.data))
         }
+        return response;
     } catch (error) {
         dispatch(setLoading(false));
         dispatch(setError(true))
+        console.log('error get')
     }
 };
 export const addUsersData = (obj) => async (dispatch) => {
@@ -41,28 +43,26 @@ export const deleteUsersData = (id) => async (dispatch, getState) => {
     const users = data.filter(user => user.id !== id)
     try {
         dispatch(setLoading(true));
-        dispatch(setError(false))
-        const response = await httpDelete(`https://611d49a27d273a0017e2f785.mockapi.io/api/fake/api/${id}`);
-        if (response) (dispatch(usersData(users)))
-        return response;
+        dispatch(setError(false));
+        await httpDelete(`https://611d49a27d273a0017e2f785.mockapi.io/api/fake/api/${id}`);
+        dispatch(usersData(users))
     } catch (error) {
         dispatch(setLoading(false));
         dispatch(setError(true))
-        console.log('errrrooorr')
+        console.log('errrrooorr Delete')
     }
 };
 
 export const putUsersData = (id, updatedUser) => async (dispatch, getState) => {
-    console.log(updatedUser, 'action updatedUser')
     const { data } = getState();
-
     const update = data.map(user => (user.id === id ? updatedUser : user));
-
     try {
         dispatch(setLoading(true));
         dispatch(setError(false))
         const response = await httpPut(`https://611d49a27d273a0017e2f785.mockapi.io/api/fake/api/${id}`, updatedUser);
-        if (response) dispatch(putUserData(update))
+        if (response) {
+            dispatch(putUserData(update))
+        }
         return response;
     } catch (error) {
         dispatch(setLoading(false));
@@ -91,7 +91,7 @@ export const postUserData = (user) => ({
     payload: user,
 })
 
-export const deleteUser = (id) => ({
+export const removeUser = (id) => ({
     type: REMOVE_USER_DATA,
     payload: id,
 })

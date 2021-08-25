@@ -4,9 +4,10 @@ import Pagination from '../pagination/Pagination';
 import Button from '../form/Button';
 
 
+
+
 const UserTable = props => {
     const { users } = props;
-
     const handleDeleteUser = id => {
         let answer = window.confirm('Are you sure?')
         if (answer) {
@@ -39,10 +40,10 @@ const UserTable = props => {
                                         <td className='td'>{user.email}</td>
                                         <td className='td'><span>{user.dataOfBirth}</span></td>
                                         <td className='td'>{user.createUserData}</td>
-                                        <td className='td' style={{width: '100px'}}>
-                                            <div style={{display: 'flex'}}>
-                                            <Button onClick={() => props.editRow(user)} color='primary' title='Edit' />
-                                            <Button onClick={() => handleDeleteUser(user.id)} color='secondary' title='Delete' />
+                                        <td className='td' style={{ width: '100px' }}>
+                                            <div style={{ display: 'flex' }}>
+                                                <Button onClick={() => props.editRow(user)} color='primary' title='Edit' />
+                                                <Button onClick={() => handleDeleteUser(user.id)} color='secondary' title='Delete' />
                                             </div>
                                         </td>
                                     </tr>
@@ -51,8 +52,8 @@ const UserTable = props => {
                         </table>
                         <Pagination />
                     </>)
-                :
-                <Loading />
+                : 
+               <Loading />
             }
         </>
     )
